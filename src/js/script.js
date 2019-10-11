@@ -52,6 +52,34 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
+  const app = {
+    initMenu: function () {
+      const thisApp = this;
+      console.log('thisApp.data:', thisApp.data);
+
+      for (let productData in thisApp.data.products) {
+        new Product(productData, thisApp.data.products[productData]);
+      }
+      const testProduct = new Product();
+      console.log('testProduct:', testProduct);
+    },
+    initData: function () {
+      const thisApp = this;
+      thisApp.data = dataSource;
+    },
+    init: function () {
+      const thisApp = this;
+      console.log('*** App starting ***');
+      console.log('thisApp:', thisApp);
+      console.log('classNames:', classNames);
+      console.log('settings:', settings);
+      console.log('templates:', templates);
+
+      thisApp.initData();
+      thisApp.initMenu();
+    },
+  };
+
   class Product {
     constructor(id, data) {
       const thisProduct = this;
@@ -181,7 +209,7 @@
           else if (!optionSelected && option.default) {
             /* deduct price of option from price */
 
-            price -= option.price;
+            price =- option.price;
 
             /* END ELSE IF: if option is not selected and option is default */
           }
@@ -201,33 +229,6 @@
 
 
 
-  const app = {
-    initMenu: function () {
-      const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
-
-      for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
-      }
-      const testProduct = new Product();
-      console.log('testProduct:', testProduct);
-    },
-    initData: function () {
-      const thisApp = this;
-      thisApp.data = dataSource;
-    },
-    init: function () {
-      const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
-
-      thisApp.initData();
-      thisApp.initMenu();
-    },
-  };
 
   app.init();
 }
