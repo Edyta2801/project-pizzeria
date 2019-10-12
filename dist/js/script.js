@@ -190,7 +190,7 @@
       let price = thisProduct.data.price;
 
       /* START LOOP: for each paramId in thisProduct.data.params */
-      for (let paramId in thisProduct.data.Params) {
+      for (let paramId in thisProduct.data.params) {
         /* save the element in thisProduct.data.params with key paramId as const param */
         const param = thisProduct.data.params[paramId];
         console.log(param);
@@ -209,7 +209,7 @@
           else if (!optionSelected && option.default) {
             /* deduct price of option from price */
 
-            price =- option.price;
+            price -= option.price;
 
             /* END ELSE IF: if option is not selected and option is default */
           }
@@ -219,7 +219,7 @@
       }
 
       /* set the contents of thisProduct.priceElem to be the value of variable price */
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.priceElem.innerHTML=price;
     }
 
   }
