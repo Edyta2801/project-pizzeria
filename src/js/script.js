@@ -80,6 +80,15 @@
     },
   };
 
+  class AmountWidget {
+    constructor(element) {
+      const thisWidget = this;
+
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor arguments:', element);
+    }
+  }
+
   class Product {
     constructor(id, data) {
       const thisProduct = this;
@@ -88,6 +97,7 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
       thisProduct.initAccordion();
 
@@ -124,6 +134,9 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+
+
     }
     initAccordion() {
       const thisProduct = this;
@@ -179,6 +192,17 @@
         thisProduct.processOrder();
       });
     }
+
+
+    initAmountWidget() {
+      const thisProduct = this;
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
+
+
+
+
+
     processOrder() {
       const thisProduct = this;
       console.log('processOrder');
@@ -218,12 +242,12 @@
           const classImages = '.' + paramId + '-' + optionId;
           const optionImages = thisProduct.imageWrapper.querySelectorAll(classImages);
 
-          if(optionSelected){
-            for(let optionImage of optionImages){
+          if (optionSelected) {
+            for (let optionImage of optionImages) {
               optionImage.classList.add('active');
             }
           } else {
-            for(let optionImage of optionImages){
+            for (let optionImage of optionImages) {
               optionImage.classList.remove('active');
             }
           }
