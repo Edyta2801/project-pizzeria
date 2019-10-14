@@ -106,14 +106,34 @@
       // TO DO: Add validation
 
       thisWidget.value = newValue;
+      thisWidget.announce();
       thisWidget.input.value = thisWidget.value;
 
     }
     initActions() {
-      thisWidget.input.addEventListener('change', setValue(value));
-      thisWidget.linkDecrease.addEventListener('click', setValue.preventDefault(thisWidget.value - 1));
-      thisWidget.linkIncrease.addEventListener('click', setValue.preventDefault(thisWidget.value + 1));
+      const thisWidget = this;
+      thisWidget.input.addEventListener('change', function () {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function () {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('clicked', function () {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+
+      console.log('initActions', thisWidget);
     }
+    announce() {
+      const thisWidget = this;
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
+
 
   }
 
@@ -225,6 +245,10 @@
     initAmountWidget() {
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+
+      thisProduct.amountWidgetElem.addEventListener('updated', function (event) {
+        thisProduct.processOrder();
+      });
     }
 
 
@@ -283,6 +307,9 @@
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
       }
+
+      // multiply price by amount
+      price *= thisProduct.amountWidget.value;
 
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
