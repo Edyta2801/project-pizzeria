@@ -84,11 +84,12 @@
     constructor(element) {
       const thisWidget = this;
       thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
 
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments:', element);
     }
-    getElements(element){
+    getElements(element) {
       const thisWidget = this;
 
       thisWidget.element = element;
@@ -96,6 +97,24 @@
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+
+      // TO DO: Add validation
+
+      thisWidget.value = newValue;
+      thisWidget.input.value = thisWidget.value;
+
+    }
+    initActions() {
+      thisWidget.input.addEventListener('change', setValue(value));
+      thisWidget.linkDecrease.addEventListener('click', setValue.preventDefault(thisWidget.value - 1));
+      thisWidget.linkIncrease.addEventListener('click', setValue.preventDefault(thisWidget.value + 1));
+    }
+
   }
 
   class Product {
