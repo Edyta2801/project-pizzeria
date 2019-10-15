@@ -47,7 +47,7 @@ dataSource.products = {
       '<img class="active toppings-basil" src="images/pizza/basil.svg">',
       '<img class="active toppings-bacon" src="images/pizza/bacon.svg">',
       '<img class="active toppings-corn" src="images/pizza/corn.svg">',
-      '<img class="active toppings-pinapple" src="images/pizza/pinapple.svg">',
+      '<img class="active toppings-pineapple" src="images/pizza/pineapple.svg">',
     ],
     params: {
       sauce: {
@@ -70,7 +70,7 @@ dataSource.products = {
           salami: {label: 'Salami', price: 3},
           bacon: {label: 'Bacon', price: 3},
           corn: {label: 'Corn', price: 1},
-          pinapple: {label: 'Pinapple', price: 2},
+          pinapple: {label: 'Pineapple', price: 2},
         },
       },
       crust: {
