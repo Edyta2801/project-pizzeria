@@ -102,7 +102,7 @@
       thisProduct.processOrder();
       thisProduct.initAccordion();
 
-      console.log('new Product:', thisProduct);
+      // console.log('new Product:', thisProduct);
 
     }
     renderInMenu() {
@@ -118,7 +118,7 @@
 
       // find menu container
       const menuContainer = document.querySelector(select.containerOf.menu);
-      console.log(menuContainer);
+      // console.log(menuContainer);
 
       // add element to menu
       menuContainer.appendChild(thisProduct.element);
@@ -176,7 +176,7 @@
 
     initOrderForm() {
       const thisProduct = this;
-      console.log('initOrderForm');
+      // console.log('initOrderForm');
       thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
@@ -192,16 +192,16 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
-      console.log('initOrderForm:');
+      // console.log('initOrderForm:');
     }
 
     processOrder() {
       const thisProduct = this;
-      console.log('processOrder');
+      // console.log('processOrder');
 
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      // console.log('formData', formData);
 
       /* set variable price to equal thisProduct.data.price */
       let price = thisProduct.data.price;
@@ -210,7 +210,7 @@
       for (let paramId in thisProduct.data.params) {
         /* save the element in thisProduct.data.params with key paramId as const param */
         const param = thisProduct.data.params[paramId];
-        console.log(param);
+        // console.log(param);
         /* START LOOP: for each optionId in param.options */
         for (let optionId in param.options) {
           /* save the element in param.options with key optionId as const option */
@@ -273,8 +273,8 @@
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      // console.log('AmountWidget:', thisWidget);
+      // console.log('constructor arguments:', element);
     }
     getElements(element) {
       const thisWidget = this;
@@ -319,7 +319,7 @@
         thisWidget.setValue(thisWidget.value + 1);
       });
 
-      console.log('initActions', thisWidget);
+      // console.log('initActions', thisWidget);
     }
     announce() {
       const thisWidget = this;
@@ -334,13 +334,13 @@
   const app = {
     initMenu: function () {
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
+      // console.log('thisApp.data:', thisApp.data);
 
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
       }
       const testProduct = new Product();
-      console.log('testProduct:', testProduct);
+      // console.log('testProduct:', testProduct);
     },
     initData: function () {
       const thisApp = this;
@@ -348,11 +348,11 @@
     },
     init: function () {
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      // console.log('*** App starting ***');
+      // console.log('thisApp:', thisApp);
+      // console.log('classNames:', classNames);
+      // console.log('settings:', settings);
+      // console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
