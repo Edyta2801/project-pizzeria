@@ -369,7 +369,9 @@
       const thisApp = this;
 
       const cartElem = document.querySelector(select.containerOf.cart);
-      console.log(cartElem);
+      // console.log(cartElem);
+
+      // instancja klasy Cart zapisana  w thisApp.cart, oznacza że można wywołać ją poza obiektem app za pomocą app.cart
       thisApp.cart = new Cart(cartElem);
 
     },
