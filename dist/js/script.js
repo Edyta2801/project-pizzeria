@@ -265,6 +265,7 @@
     }
 
   }
+
   class AmountWidget {
     constructor(element) {
       const thisWidget = this;
@@ -335,6 +336,7 @@
       const thisCart = this;
       thisCart.products = [];
       thisCart.getElements(element);
+
       console.log('new Cart:', thisCart);
 
     }
@@ -348,12 +350,6 @@
 
 
 
-
-
-
-
-
-
   const app = {
     initMenu: function () {
       const thisApp = this;
@@ -362,13 +358,22 @@
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
       }
-      const testProduct = new Product();
+      // const testProduct = new Product();
       // console.log('testProduct:', testProduct);
     },
     initData: function () {
       const thisApp = this;
       thisApp.data = dataSource;
     },
+    initCart: function () {
+      const thisApp = this;
+
+      const cartElem = document.querySelector(select.containerOf.cart);
+      console.log(cartElem);
+      thisApp.cart = new Cart(cartElem);
+
+    },
+
     init: function () {
       const thisApp = this;
       // console.log('*** App starting ***');
@@ -377,8 +382,10 @@
       // console.log('settings:', settings);
       // console.log('templates:', templates);
 
+
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     },
   };
 
