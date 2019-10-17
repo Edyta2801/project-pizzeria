@@ -205,6 +205,7 @@
       // console.log('formData', formData);
 
       /* set variable price to equal thisProduct.data.price */
+      thisProduct.params = {};
       let price = thisProduct.data.price;
 
       /* START LOOP: for each paramId in thisProduct.data.params */
@@ -235,7 +236,19 @@
           const classImages = '.' + paramId + '-' + optionId;
           const optionImages = thisProduct.imageWrapper.querySelectorAll(classImages);
 
+
+          // zewnętrzna pętla iteruje po parametrach
           if (optionSelected) {
+
+            // wewnętrzna pętla iteruje po opcjach
+            if (!thisProduct.params[paramId]) {
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              };
+            }
+            thisProduct.params[paramId].options[optionId] = option.label;
+
             for (let optionImage of optionImages) {
               optionImage.classList.add('active');
             }
@@ -256,6 +269,8 @@
 
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = thisProduct.price;
+
+      console.log(thisProduct.params);
     }
 
     initAmountWidget() {
@@ -269,11 +284,15 @@
     addToCart() {
       const thisProduct = this;
 
+      thisProduct.data.name = thisProduct.name;
+      thisProduct.amountWidget.value = thisProduct.amount;
+
+
       // metoda add otrzyma odwwołanie do instancji Cart zapisanej w app.cart
       // dzięki temu  będzie mogła odczytywać jej właściwości i wykonywac jej metody
       app.cart.add(thisProduct);
-
     }
+
 
   }
 
