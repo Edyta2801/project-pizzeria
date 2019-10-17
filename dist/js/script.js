@@ -285,12 +285,13 @@
     addToCart() {
       const thisProduct = this;
 
-      thisProduct.data.name = thisProduct.name;
-      thisProduct.amountWidget.value = thisProduct.amount;
+      thisProduct.name = thisProduct.data.name;
+      thisProduct.amount = thisProduct.amountWidget.value;
 
 
       // metoda add otrzyma odwwołanie do instancji Cart zapisanej w app.cart
       // dzięki temu  będzie mogła odczytywać jej właściwości i wykonywac jej metody
+
       app.cart.add(thisProduct);
     }
 
@@ -377,7 +378,7 @@
     }
     getElements(element) {
       const thisCart = this;
-      thisCart.dom = this;
+      thisCart.dom = {};
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
@@ -408,6 +409,7 @@
 
       console.log('adding product', menuProduct);
 
+      // stworzenie  nowej instancji klasy new cartProduct oraz dodanie do tablicy thisCart.products
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       console.log('thisCart.products', thisCart.products);
     }
@@ -436,10 +438,12 @@
       thisCartProduct.dom.wrapper = element;
 
       thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.AmountWidget);
+
       thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
     }
+
   }
 
 
