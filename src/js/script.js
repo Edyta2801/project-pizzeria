@@ -191,6 +191,7 @@
       thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
       // console.log('initOrderForm:');
     }
@@ -263,8 +264,19 @@
         thisProduct.processOrder();
       });
     }
+    addToCart() {
+      const thisProduct = this;
+
+      // metoda add otrzyma odwwołanie do instancji Cart zapisanej w app.cart
+      // dzięki temu  będzie mogła odczytywać jej właściwości i wykonywac jej metody
+      app.cart.add(thisProduct);
+
+    }
 
   }
+
+
+
 
   class AmountWidget {
     constructor(element) {
@@ -354,6 +366,10 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function (event) {
         thisCart.dom.wrapper.classList.toggle('active');
       });
+    }
+    add(menuProduct) {
+      // const thisCart=this;
+      console.log('adding product', menuProduct);
 
     }
   }
