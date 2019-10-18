@@ -271,7 +271,7 @@
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = thisProduct.price;
 
-      console.log(thisProduct.params);
+      // console.log(thisProduct.params);
     }
 
     initAmountWidget() {
@@ -373,7 +373,7 @@
       thisCart.getElements(element);
       thisCart.initActions();
 
-      console.log('new Cart:', thisCart);
+      // console.log('new Cart:', thisCart);
 
     }
     getElements(element) {
@@ -398,20 +398,20 @@
       // generate HTML based on templates
       const generatedHTML = templates.cartProduct(menuProduct);
 
-      console.log(generatedHTML);
+      // console.log(generatedHTML);
 
       //generate DOM using utils.createElementFrom HTML
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-      console.log(generatedDOM);
+      // console.log(generatedDOM);
 
       // add DOM element to thisCart.dom.productList
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      console.log('adding product', menuProduct);
+      // console.log('adding product', menuProduct);
 
       // stworzenie  nowej instancji klasy new cartProduct oraz dodanie do tablicy thisCart.products
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      console.log('thisCart.products', thisCart.products);
+      // console.log('thisCart.products', thisCart.products);
     }
   }
 
@@ -431,7 +431,7 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
 
-      console.log('thisCartProduct:', thisCartProduct);
+      // console.log('thisCartProduct:', thisCartProduct);
 
     }
     getElements(element) {
