@@ -424,6 +424,7 @@
       thisCartProduct.price = menuProduct.price;
       thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.amount = menuProduct.amount;
+      thisCartProduct.deliveryFree = settings.cart;
 
 
       thisCartProduct.param = JSON.parse(JSON.stringify(menuProduct.params));
@@ -452,8 +453,11 @@
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
 
       thisCartProduct.dom.amountWidget.addEventListener('updated', function (event) {
-        thisCartProduct.price = thisCartProduct.priceSingle*thisCartProduct.amount;
+        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
+
+        // możliwość zmiany ceny w koszyku dzięki +/-
+        // thisCartProduct.dom.price.innerHTML=thisCartProduct.price;
       });
     }
 
