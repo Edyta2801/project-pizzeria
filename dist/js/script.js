@@ -372,6 +372,7 @@
       thisCart.products = [];
       thisCart.getElements(element);
       thisCart.initActions();
+      thisCart.deliveryFree = settings.cart;
 
       // console.log('new Cart:', thisCart);
 
@@ -384,6 +385,12 @@
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
 
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+
+      thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
+
+      for (let key of thisCart.renderTotalsKeys) {
+        thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
+      }
 
     }
     initActions() {
@@ -412,8 +419,36 @@
       // stworzenie  nowej instancji klasy new cartProduct oraz dodanie do tablicy thisCart.products
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       // console.log('thisCart.products', thisCart.products);
+
+      thisCart.update();
+
+    }
+    update() {
+      const thisCart = this;
+      thisCart.totalNumber = 0;
+      thisCart.subtotalPrice = 0;
+
+      for (let product of thisCart.products) {
+        thisCart.subtotalPrice += product.price;
+        thisCart.totalNumber += product.amount;
+      }
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+
+      console.log('totalNumber:', thisCart.totalNumber);
+      console.log('subtotalPrice:', thisCart.subtotalPrice);
+      console.log('totalPrice:', thisCart.totalPrice);
+
+      for (let key of thisCart.renderTotalsKeys) {
+        for (let elem of thisCart.dom[key]) {
+          elem.innerHTML = thisCart[key];
+        }
+      }
+
     }
   }
+
+
+
 
   class CartProduct {
     constructor(menuProduct, element) {
@@ -424,8 +459,6 @@
       thisCartProduct.price = menuProduct.price;
       thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.amount = menuProduct.amount;
-      thisCartProduct.deliveryFree = settings.cart;
-
 
       thisCartProduct.param = JSON.parse(JSON.stringify(menuProduct.params));
 
