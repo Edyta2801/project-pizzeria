@@ -356,10 +356,13 @@
       });
 
       // console.log('initActions', thisWidget);
+
+
+
     }
     announce() {
       const thisWidget = this;
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', { bubbles: true });
       thisWidget.element.dispatchEvent(event);
     }
 
@@ -398,6 +401,7 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function (event) {
         thisCart.dom.wrapper.classList.toggle('active');
       });
+      thisCart.dom.productList.addEventListener('updated', function () { thisCart.update(); });
     }
     add(menuProduct) {
       const thisCart = this;
