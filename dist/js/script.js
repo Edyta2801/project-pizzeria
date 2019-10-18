@@ -375,7 +375,8 @@
       thisCart.products = [];
       thisCart.getElements(element);
       thisCart.initActions();
-      thisCart.deliveryFree = settings.cart;
+      thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
+      thisCart.update();
 
       // console.log('new Cart:', thisCart);
 
@@ -423,7 +424,6 @@
       // stworzenie  nowej instancji klasy new cartProduct oraz dodanie do tablicy thisCart.products
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       // console.log('thisCart.products', thisCart.products);
-
       thisCart.update();
 
     }
@@ -440,7 +440,7 @@
 
       console.log('totalNumber:', thisCart.totalNumber);
       console.log('subtotalPrice:', thisCart.subtotalPrice);
-      console.log('totalPrice:', thisCart.totalPrice);
+      console.log('totalPrice in this Cart:', thisCart.totalPrice);
 
       for (let key of thisCart.renderTotalsKeys) {
         for (let elem of thisCart.dom[key]) {
