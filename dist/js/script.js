@@ -403,8 +403,8 @@
       }
 
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
-      thisCart.dom.phone=thisCart.dom.wrapper.querySelector(select.cart.phone);
-      thisCart.dom.address=thisCart.dom.wrapper.querySelector(select.cart.address);
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
 
     }
@@ -482,7 +482,22 @@
       const payload = {
         address: 'test',
         totalPrice: thisCart.totalPrice,
+        address: thisCart.dom.address,
+        phone: thisCart.dom.phone,
+        totalNumber: thisCart.totalNumber,
+        subtotalPrice: thisCart.subtotalPrice,
+        totalPrice: thisCart.totalPrice,
+        deliveryFee: thisCart.deliveryFe,
+        products: [],
+
+
       };
+
+      for (let product of thisCart.products) {
+        payload.products.push(product.getData());
+
+      }
+
 
       const options = {
         method: 'POST',
@@ -570,6 +585,20 @@
         event.preventDefault();
         thisCartProduct.remove();
       });
+    }
+    getData() {
+      const thisCartProduct = this;
+
+
+      return {
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        params: thisCartProduct.params,
+
+      };
+
     }
 
   }
