@@ -456,10 +456,10 @@
       }
 
     }
-    remove(cartProduct){
-      const thisCart=this;
-      const index=thisCart.products.indexOf[cartProduct];
-      thisCart.products.splice(index,1);
+    remove(cartProduct) {
+      const thisCart = this;
+      const index = thisCart.products.indexOf[cartProduct];
+      thisCart.products.splice(index, 1);
       cartProduct.dom.wrapper.remove();
       thisCart.update();
     }
@@ -547,14 +547,31 @@
       // console.log('thisApp.data:', thisApp.data);
 
       for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
       // const testProduct = new Product();
       // console.log('testProduct:', testProduct);
     },
     initData: function () {
       const thisApp = this;
-      thisApp.data = dataSource;
+      thisApp.data = {};
+      const url = settings.db.url + '/' + settings.db.product;
+      console.log(url);
+
+      fetch(url)
+        .then(function (rawResponse) {
+          return rawResponse.json();
+        })
+        .then(function (parsedResponse) {
+          console.log('parsedResponse', parsedResponse);
+          // save parsedResponse as thisApp.data.products
+          parsedResponse= thisApp.data.products;
+          console.log(parsedResponse);
+          // execute initMenu method
+          thisApp.initMenu();
+        });
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
+
     },
     initCart: function () {
       const thisApp = this;
@@ -577,7 +594,7 @@
 
 
       thisApp.initData();
-      thisApp.initMenu();
+      // thisApp.initMenu();
       thisApp.initCart();
     },
   };
