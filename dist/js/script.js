@@ -565,10 +565,10 @@
         .then(function (parsedResponse) {
           console.log('parsedResponse', parsedResponse);
           // save parsedResponse as thisApp.data.products
-          parsedResponse= thisApp.data.products;
+          thisApp.data.products=parsedResponse;
           console.log(parsedResponse);
           // execute initMenu method
-          thisApp.initMenu();
+          thisApp.initMenu(parsedResponse);
         });
       console.log('thisApp.data', JSON.stringify(thisApp.data));
 
