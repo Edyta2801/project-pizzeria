@@ -381,6 +381,7 @@
       thisCart.initActions();
       thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.update();
+      thisCart.resetCart();
 
       // console.log('new Cart:', thisCart);
 
@@ -419,6 +420,7 @@
       thisCart.dom.form.addEventListener('submit', function (event) {
         event.preventDefault();
         thisCart.sendOrder();
+        thisCart.resetCart();
       });
 
     }
@@ -513,6 +515,20 @@
           console.log('parsedResponse', parsedResponse);
         });
     }
+    resetCart() {
+      const thisCart = this;
+      // const thisCartProduct = this;
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: thisCart,
+        },
+      });
+      thisCart.dom.wrapper.dispatchEvent(event);
+      console.log(event);
+
+    }
   }
 
 
@@ -563,18 +579,7 @@
         // thisCartProduct.dom.price.innerHTML=thisCartProduct.price;
       });
     }
-    remove() {
-      const thisCartProduct = this;
 
-      const event = new CustomEvent('remove', {
-        bubbles: true,
-        detail: {
-          cartProduct: thisCartProduct,
-        },
-      });
-      thisCartProduct.dom.wrapper.dispatchEvent(event);
-      console.log(event);
-    }
     initActions() {
       const thisCartProduct = this;
 
@@ -650,11 +655,11 @@
 
     init: function () {
       const thisApp = this;
-      // console.log('*** App starting ***');
-      // console.log('thisApp:', thisApp);
-      // console.log('classNames:', classNames);
-      // console.log('settings:', settings);
-      // console.log('templates:', templates);
+      console.log('*** App starting ***');
+      console.log('thisApp:', thisApp);
+      console.log('classNames:', classNames);
+      console.log('settings:', settings);
+      console.log('templates:', templates);
 
 
       thisApp.initData();
