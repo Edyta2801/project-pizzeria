@@ -1,3 +1,5 @@
+import {settings, select}from './settings.js';
+
 
 const app = {
   initMenu: function () {
