@@ -1,4 +1,4 @@
-import {settings, select}from './settings.js';
+import { settings, select } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart';
 
@@ -42,6 +42,11 @@ const app = {
 
     // instancja klasy Cart zapisana  w thisApp.cart, oznacza że można wywołać ją poza obiektem app za pomocą app.cart
     thisApp.cart = new Cart(cartElem);
+
+    thisApp.productList = document.querySelector(select.containerOf.menu);
+    thisApp.productList.addEventListener('add-to-cart', function (event) {
+      app.cart.add(event.detail.product);
+    });
 
   },
 

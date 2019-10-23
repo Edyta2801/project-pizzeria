@@ -203,7 +203,15 @@ class Product {
     // metoda add otrzyma odwwołanie do instancji Cart zapisanej w app.cart
     // dzięki temu  będzie mogła odczytywać jej właściwości i wykonywac jej metody
 
-    app.cart.add(thisProduct);
+    // app.cart.add(thisProduct);
+    const event=new CustomEvent('add-to-cart',{
+      bubbles:true,
+      detail:{
+        product:thisProduct,
+      }
+    });
+
+    thisProduct.element.dispatchEvent(event);
   }
 
 
