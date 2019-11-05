@@ -1,5 +1,5 @@
-import { select} from './settings.js';
-import AmountWidget from './components/AmountWidget.js';
+import { select} from '../settings.js';
+import AmountWidget from './AmountWidget.js';
 
 class CartProduct {
   constructor(menuProduct, element) {
@@ -45,6 +45,18 @@ class CartProduct {
       // możliwość zmiany ceny w koszyku dzięki +/-
       // thisCartProduct.dom.price.innerHTML=thisCartProduct.price;
     });
+  }
+  remove() {
+    const thisCartProduct = this;
+
+    const event = new CustomEvent('remove', {
+      bubbles: true,
+      detail: {
+        cartProduct: thisCartProduct,
+      },
+    });
+    thisCartProduct.dom.wrapper.dispatchEvent(event);
+    console.log(event);
   }
 
   initActions() {
