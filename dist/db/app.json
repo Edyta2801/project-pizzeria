@@ -217,33 +217,5 @@
       }
     }
   ],
-  "order": [
-    {
-      "testAddress": "test",
-      "totalPrice": 29,
-      "address": {},
-      "phone": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "products": [
-        {
-          "id": "breakfast",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9
-        }
-      ],
-      "id": 1
-    },
-    {
-      "testAddress": "test",
-      "totalPrice": 20,
-      "address": {},
-      "phone": {},
-      "totalNumber": 0,
-      "subtotalPrice": 0,
-      "products": [],
-      "id": 2
-    }
-  ]
+  "order": []
 }

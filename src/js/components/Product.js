@@ -1,5 +1,5 @@
-import { select, templates} from '../settings.js';
-import {utils} from '../utils.js';
+import { select, templates } from '../settings.js';
+import { utils } from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 
 
@@ -92,6 +92,7 @@ class Product {
   initOrderForm() {
     const thisProduct = this;
     // console.log('initOrderForm');
+
     thisProduct.form.addEventListener('submit', function (event) {
       event.preventDefault();
       thisProduct.processOrder();
@@ -207,10 +208,10 @@ class Product {
     // dzięki temu  będzie mogła odczytywać jej właściwości i wykonywac jej metody
 
     // app.cart.add(thisProduct);
-    const event=new CustomEvent('add-to-cart',{
-      bubbles:true,
-      detail:{
-        product:thisProduct,
+    const event = new CustomEvent('add-to-cart', {
+      bubbles: true,
+      detail: {
+        product: thisProduct,
       }
     });
 
